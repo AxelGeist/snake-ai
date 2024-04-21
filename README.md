@@ -13,7 +13,7 @@ This repository contains the implementation of an AI-powered Snake game, using P
 - Numpy
 
 
-After setting up your Anaconda environment, install the necessary Python libraries:
+After setting up your Anaconda environment, install the necessary Python libraries with `Anaconda Prompt`:
 
 ```bash
 conda install pytorch torchvision torchaudio cpuonly -c pytorch
