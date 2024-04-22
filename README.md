@@ -1,26 +1,27 @@
 # snake-ai
 
-
-
-
-
 This repository contains the implementation of an AI-powered Snake game, using PyTorch for the reinforcement learning model. The AI uses a simple linear Q-learning network to decide the best moves based on the game state.
 
 ## Getting Started
 
 ### Prerequisites
 
+- Anaconda
 - Python 3.8+
 - PyTorch
 - Pygame
 - Numpy
 
-You can install the required packages using pip:
+
+After setting up your Anaconda environment, install the necessary Python libraries with `Anaconda Prompt`:
+
+```bash
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+```
 
 ```bash
 pip install torch pygame numpy
 ```
-
 
 ### Structure
 
@@ -31,17 +32,24 @@ pip install torch pygame numpy
 
 ### Running the Game
 
-Activate the virtual environment first:
+1. **Activate your virtual environment**:
+   If you haven't created a virtual environment for this project, you can create one using:
 
-```bash
-activate pygame_env
-```
+   ```
+   conda create --name pygame_env python=3.8
+   ```
 
-Then run the game with the following script:
+    Activate the environment with:
 
-```bash
-python agent.py
-```
+    ```
+    conda activate pygame_env
+    ```
+
+2. **Then run the game with the following script**:
+
+    ```bash
+    python agent.py
+    ```
 
 This will open a Pygame window and start the game. The AI will learn how to play the game over time by adjusting its strategy based on the reward system.
 
