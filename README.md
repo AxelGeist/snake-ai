@@ -105,8 +105,12 @@ def save(self, file_name='model.pth'):
 ```
 
 ## Current record
-### Score: 70
 
+### Score: 103 after 2274 games played
+
+![image](https://github.com/AxelGeist/snake-ai/assets/73136957/670c8f2b-4e91-4da0-bddb-b6bf0589b22f)
+
+### Score: 70 after 152 games played
 
 ![image](https://github.com/AxelGeist/snake-ai/assets/73136957/de2742e7-a36e-4ea0-b161-9643c54f4f1d)
 
