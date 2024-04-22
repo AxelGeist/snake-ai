@@ -2,6 +2,9 @@
 
 This repository contains the implementation of an AI-powered Snake game, using PyTorch for the reinforcement learning model. The AI uses a simple linear Q-learning network to decide the best moves based on the game state.
 
+![image](https://github.com/AxelGeist/snake-ai/assets/73136957/6c61f639-0c99-4c2e-bcc3-6f5ba20db8cf)
+
+
 ## Getting Started
 
 ### Prerequisites
