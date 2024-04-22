@@ -1,6 +1,8 @@
 import torch
 import random
 import numpy as np
+import os
+import csv
 from collections import deque
 from game import SnakeGameAI, Direction, Point
 from model import Linear_QNet, QTrainer
@@ -18,7 +20,9 @@ class Agent:
         self.gamma = 0.9 # discount rate
         self.memory = deque(maxlen=MAX_MEMORY) # popleft()
         self.model = Linear_QNet(11, 256, 3)
+        # self.model.load() # start game with previous saved Model
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
+        print("First layer weights:", self.model.linear1.weight.data)
 
 
     def get_state(self, game):
@@ -86,7 +90,8 @@ class Agent:
 
     def get_action(self, state):
         # random moves: tradeoff exploration / exploitation
-        self.epsilon = max(80 - self.n_games, 0)  # Ensure epsilon is never negative
+        self.epsilon = max(80 - self.n_games, 0) # explore and then exploit later
+        # self.epsilon = 10 # exploit model
         final_move = [0,0,0]
         if random.randint(0, 200) < self.epsilon:
             move = random.randint(0, 2)
@@ -99,6 +104,26 @@ class Agent:
             final_move[move] = 1
 
         return final_move
+    
+    def save_record_logs(self, record, file_name='logs.csv'):
+        logs_folder_path = './logs'
+        if not os.path.exists(logs_folder_path):
+            os.makedirs(logs_folder_path)
+
+        file_path = os.path.join(logs_folder_path, file_name)
+        
+        # Check if the file already exists
+        file_exists = os.path.isfile(file_path)
+
+        with open(file_path, 'a', newline='') as file:
+            writer = csv.writer(file)
+            
+            # Write headers if the file does not exist
+            if not file_exists:
+                writer.writerow(['Record', 'Games Played'])
+
+            # Write the data
+            writer.writerow([record, self.n_games])
 
 
 def train():
@@ -134,6 +159,7 @@ def train():
             if score > record:
                 record = score
                 agent.model.save()
+                agent.save_record_logs(record)
 
             print('Game', agent.n_games, 'Score', score, 'Record:', record)
 
